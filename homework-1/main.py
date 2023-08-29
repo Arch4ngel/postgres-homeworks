@@ -15,9 +15,8 @@ def read_csv(filepath):
     return csv_data
 
 
-postgres_pass = os.getenv('POSTGRES_KEY')
-
-with psycopg2.connect(host="localhost", database="north", user="postgres", password=postgres_pass) as conn:
+with psycopg2.connect(host=os.getenv('POSTGRES_HOST'), database=os.getenv('POSTGRES_DB'),
+                      user=os.getenv('POSTGRES_USR'), password=os.getenv('POSTGRES_PASS')) as conn:
     with conn.cursor() as cur:
         for row in read_csv('north_data/employees_data.csv'):
             cur.execute(f"INSERT INTO employees VALUES({int(row['employee_id'])}, '{row['first_name']}', "
