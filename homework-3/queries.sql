@@ -26,3 +26,4 @@ WHERE NOT EXISTS (SELECT 1 FROM orders WHERE orders.customer_id = customers.cust
 -- Этот запрос написать именно с использованием подзапроса.
 SELECT DISTINCT product_name FROM products
 WHERE product_id IN (SELECT product_id FROM order_details WHERE quantity = 10)
+
